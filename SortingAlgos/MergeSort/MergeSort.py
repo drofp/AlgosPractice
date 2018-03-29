@@ -1,7 +1,7 @@
 # Right heavy descending MergeSort algorithm
 
 def mergeSortRecurse(arr):
-    if len(arr) == 1:
+    if len(arr) == 1 or len(arr) == 0:
         return arr
     else:
         left  = arr[ : len(arr) // 2]
