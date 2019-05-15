@@ -4,7 +4,7 @@ Collection of commonly used data structures and corresponding relevant algorithm
 Any checked items in this list will have basic functionality of search, insertion, and deletion.
 
 ## Linked Lists
-- [ ] Singly
+- [ ] Singly -- **WIP**
 - [ ] Doubly
 
 ##### Algorithms relevant for all
