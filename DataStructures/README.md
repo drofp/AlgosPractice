@@ -1,7 +1,7 @@
 # Data Stuctures and Related Algorithms
 Collection of commonly used data structures and corresponding relevant algorithms.
 
-Any checked items in this list will have basic functionality of search, insertion, and deletion.
+Any checked items in this list will have basic functionality of insertion, deletion, and search.
 
 ## Linked Lists
 - [ ] Singly -- **WIP**

@@ -30,9 +30,58 @@ class LinkedListS(object):
     def insert(self, input_data: T) -> None:
         """Inserts node at end of list."""
         new_node = LinkedListSNode(data=input_data)
-        if head is None:
+
+        if self.head is None:
             self.head = new_node
             self.tail = new_node
         else:
             self.tail.next = new_node
             self.tail = new_node
+    
+    def delete(self, deletion_data: T, occurances: int = None) -> bool:
+        """Delete specified occurances of nodes containing `deletion_data`.
+
+        Deletion order is in order of occurance starting from head.
+
+        Args:
+          deletion_data: [T], the data contained by the node(s) to be removed 
+              from the list
+          occurances: [int], number of occurances to remove, starting from the 
+              head of the list. If `None`, removes all occurances from list
+
+        Returns:
+          [bool], returns True on success
+        """
+
+        if occurances is None:
+            occurances = 1
+
+        curr_node = LinkedListSNode("temp", self.head)
+
+        while occurances > 0:
+            if curr_node.next.data == deletion_data:
+                occurances -= 1
+
+                if curr_node.next is self.head:
+                    self.head = self.head.next
+                else:
+                    curr_node.next = curr_node.next.next
+                    
+            curr_node = curr_node.next
+
+        return False
+
+    def search(self, search_data: T) -> LinkedListSNode:
+        """Finds node with `search_data` in list. Returns None if not found.
+        
+        Performs linear search starting from head of list.
+        """
+
+        curr_node = head
+
+        while curr_node:
+            if curr_node.data == search_data:
+                return curr_node
+            curr_node = curr_node.next
+
+        return None
