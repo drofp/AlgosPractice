@@ -7,13 +7,14 @@ from __future__ import print_function
 from typing import TypeVar, Type
 
 T = TypeVar("T")
+TLinkedListSNode = TypeVar("TLinkedListSNode", bound="LinkedListSNode")
 
 class LinkedListSNode(object):
     """Singly linked list node"""
 
-    def __init__(self, data: T = None):
+    def __init__(self, data: T = None, next_node: TLinkedListSNode = None):
         self.data = data
-        self.next = None
+        self.next_node = next_node
 class LinkedListS(object):
     """Singly linked list"""
     
@@ -33,7 +34,7 @@ class LinkedListS(object):
             self.head = new_node
             self.tail = new_node
         else:
-            self.tail.next = new_node
+            self.tail.next_node = new_node
             self.tail = new_node
     
     def delete(self, deletion_data: T, occurances: int = None) -> bool:
@@ -55,18 +56,18 @@ class LinkedListS(object):
             occurances = 1
 
         curr_node = LinkedListSNode("temp")
-        curr_node.next = self.head
+        curr_node.next_node = self.head
 
-        while curr_node.next and occurances > 0:
-            if curr_node.next.data == deletion_data:
+        while curr_node.next_node and occurances > 0:
+            if curr_node.next_node.data == deletion_data:
                 occurances -= 1
 
-                if curr_node.next is self.head:
-                    self.head = self.head.next
+                if curr_node.next_node is self.head:
+                    self.head = self.head.next_node
                 else:
-                    curr_node.next = curr_node.next.next
+                    curr_node.next_node = curr_node.next_node.next_node
                     
-            curr_node = curr_node.next
+            curr_node = curr_node.next_node
 
         return False
 
@@ -81,7 +82,7 @@ class LinkedListS(object):
         while curr_node:
             if curr_node.data == search_data:
                 return curr_node
-            curr_node = curr_node.next
+            curr_node = curr_node.next_node
 
         return None
 
@@ -90,7 +91,7 @@ class LinkedListS(object):
         curr_node = self.head
         while curr_node:
             print("{} -> ".format(curr_node.data), end="")
-            curr_node = curr_node.next
+            curr_node = curr_node.next_node
         
         print()
 
