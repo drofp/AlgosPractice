@@ -6,11 +6,14 @@ import unittest
 
 import linked_lists
 
-class TestLinkedListS(unittest.TestCase):
+class TestSLinkedList(unittest.TestCase):
     """Test singly linked list"""
 
     def test_initialization(self):
         """Test insertion on empty list"""
-        l = linked_lists.LinkedListS(5)
+        l = linked_lists.SLinkedList(5)
 
         l.print_list()
+
+if __name__ == '__main__':
+    unittest.main()

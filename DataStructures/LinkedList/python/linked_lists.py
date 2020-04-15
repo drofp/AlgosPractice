@@ -7,18 +7,18 @@ from __future__ import print_function
 from typing import TypeVar, Type
 
 T = TypeVar("T")
-TLinkedListSNode = TypeVar("TLinkedListSNode", bound="LinkedListSNode")
+TSLinkedListNode = TypeVar("TSLinkedListNode", bound="SLinkedListNode")
 
 
-class LinkedListSNode(object):
+class SLinkedListNode(object):
     """Singly linked list node"""
 
-    def __init__(self, data: T = None, next_node: TLinkedListSNode = None):
+    def __init__(self, data: T = None, next_node: TSLinkedListNode = None):
         self.data = data
         self.next_node = next_node
 
 
-class LinkedListS(object):
+class SLinkedList(object):
     """Singly linked list"""
 
     def __init__(self, initializer_data: T = None) -> None:
@@ -31,7 +31,7 @@ class LinkedListS(object):
 
     def insert(self, input_data: T) -> None:
         """Inserts node at end of list."""
-        new_node = LinkedListSNode(data=input_data)
+        new_node = SLinkedListNode(data=input_data)
 
         if self.head is None:
             self.head = new_node
@@ -58,7 +58,7 @@ class LinkedListS(object):
         if occurances is None:
             occurances = 1
 
-        curr_node = LinkedListSNode("temp")
+        curr_node = SLinkedListNode("temp")
         curr_node.next_node = self.head
 
         while curr_node.next_node and occurances > 0:
@@ -74,7 +74,7 @@ class LinkedListS(object):
 
         return False
 
-    def search(self, search_data: T) -> LinkedListSNode:
+    def search(self, search_data: T) -> SLinkedListNode:
         """Finds node with `search_data` in list. Returns None if not found.
 
         Performs linear search starting from head of list.
