@@ -1,8 +1,10 @@
 #include "linked_lists.h"
 
-namespace linkedlist {
-class SLinkedList{
-    SLinkedList();
-    ~SLinkedList();
-};
-}
+namespace linkedlists {
+SLinkedList::SLinkedList(){};
+SLinkedList::~SLinkedList(){};
+
+bool SLinkedList::insert(int val) { return val == 5 ? true : false; }
+
+int addOne(int val) { return val + 1; }
+}  // namespace linkedlists
