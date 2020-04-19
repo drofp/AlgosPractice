@@ -10,6 +10,6 @@ public:
   bool insert(int val);
 };
 int addOne(int val);
-}
+}  // namespace linkedlists
 
 #endif  // LINKED_LISTS_H_

@@ -10,7 +10,7 @@ TESTS := tests
 EXECUTABLE := main
 TESTEXEC := tests
 
-all: $(BIN)/$(EXECUTABLE) $(BIN)/$(TESTEXEC)
+all:  $(BIN)/$(TESTEXEC) $(BIN)/$(EXECUTABLE)
 
 run: clean all
 		clear
@@ -23,8 +23,8 @@ testAll: clean all
 $(BIN)/$(EXECUTABLE): $(SRC)/*.cc
 		$(CXX) $(CXX_FLAGS) -I $(INCLUDE) $^ -o $@
 
-$(BIN)/$(TESTEXEC):
-	$(CXX) $(CXX_FLAGS) -I $(TESTINC) $(TESTS) -o $@
+$(BIN)/$(TESTEXEC): $(TESTS)/*.cc $(SRC)/*.cc #$(filter-out , ./$(SRC)/main.cc)
+	$(CXX) $(CXX_FLAGS) -I $(INCLUDE) $^  -o $@
 
 clean:
 	-rm $(BIN)/*
