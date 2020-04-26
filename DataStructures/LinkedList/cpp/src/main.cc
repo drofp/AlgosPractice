@@ -7,5 +7,6 @@ using namespace linkedlists;
 int main()
 {
   cout << "sup dudes!" << endl;
+  demoList();
   return 0;
 }

@@ -1,6 +1,6 @@
 CXX := g++
 CXX_FLAGS := -Wall -std=c++17 -g -lgtest -lgtest_main
-TESTINC := # /usr/local/include/gtest
+TESTINC := #/usr/local/include/gtest
 
 BIN := bin
 SRC := src
@@ -10,21 +10,21 @@ TESTS := tests
 EXECUTABLE := main
 TESTEXEC := tests
 
-all:  $(BIN)/$(TESTEXEC) $(BIN)/$(EXECUTABLE)
+all: clean $(BIN)/$(EXECUTABLE) $(BIN)/$(TESTEXEC)
 
 run: clean all
 		clear
 		./$(BIN)/$(EXECUTABLE)
 
-testAll: clean all
-			clear
-			./$(BIN)/$(TESTEXEC)
+test: clean all
+		./$(BIN)/$(TESTEXEC)
 
 $(BIN)/$(EXECUTABLE): $(SRC)/*.cc
 		$(CXX) $(CXX_FLAGS) -I $(INCLUDE) $^ -o $@
 
-$(BIN)/$(TESTEXEC): $(TESTS)/*.cc $(SRC)/*.cc #$(filter-out , ./$(SRC)/main.cc)
+NONMAIN_SRCS := $(filter-out $(SRC)/main.cc, $(wildcard $(SRC)/*.cc))
+$(BIN)/$(TESTEXEC): $(TESTS)/*.cc $(NONMAIN_SRCS)
 	$(CXX) $(CXX_FLAGS) -I $(INCLUDE) $^  -o $@
 
 clean:
-	-rm $(BIN)/*
+	-rm -r $(BIN)/*
