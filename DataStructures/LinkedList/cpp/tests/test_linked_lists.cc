@@ -9,15 +9,12 @@ namespace linkedlists {
 TEST(SomeTestCase, AddOneTestPositive) { EXPECT_EQ(3, addOne(2)); }
 
 class SLinkedListTestInt : public ::testing::Test {
-//  public:
-//   ~SLinkedListTestInt() override { delete list_; }
  protected:
-  void SetUp() override { list_ = new SLinkedList<int>(); }
+  void SetUp() override { list_ = std::make_unique<SLinkedList<int>>(); }
   void TearDown() override {
-    delete list_;
-    list_ = nullptr;
+    list_.reset();
   }
-  SLinkedList<int> *list_;
+  std::unique_ptr<SLinkedList<int>> list_;
 };
 TEST_F(SLinkedListTestInt, InsertValidInt) {
     EXPECT_TRUE(list_->insert(3));
