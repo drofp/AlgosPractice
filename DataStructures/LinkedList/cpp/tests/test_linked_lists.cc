@@ -17,11 +17,18 @@ class SLinkedListTestInt : public ::testing::Test {
   std::unique_ptr<SLinkedList<int>> list_;
 };
 TEST_F(SLinkedListTestInt, InsertValidInt) {
-    EXPECT_TRUE(list_->insert(3));
-    EXPECT_TRUE(list_->insert(5));
-    EXPECT_TRUE(list_->insert(-4));
-    EXPECT_TRUE(list_->insert(500));
-    std::string printout = "3->5->-4->500->";
-    EXPECT_EQ(printout, list_->toString());
-    }
+  EXPECT_TRUE(list_->insert(3));
+  EXPECT_TRUE(list_->insert(5));
+  EXPECT_TRUE(list_->insert(-4));
+  EXPECT_TRUE(list_->insert(500));
+  std::string printout = "3->5->-4->500->";
+  EXPECT_EQ(printout, list_->toString());
+}
+
+TEST_F(SLinkedListTestInt, ListSize) {
+  EXPECT_TRUE(list_->insert(3));
+  EXPECT_TRUE(list_->insert(5));
+  EXPECT_TRUE(list_->insert(-4));
+  EXPECT_EQ(3, list_->size);
+}
 }  // namespace linkedlists

@@ -18,13 +18,25 @@ class SLinkedListNode {
 template <class T>
 class SLinkedList {
  public:
-  SLinkedListNode<T> *head = nullptr;
-  SLinkedListNode<T> *tail = nullptr;
-  int size;
+  SLinkedListNode<T> *head {nullptr};
+  SLinkedListNode<T> *tail {nullptr};
+  int size {0};
+
+  SLinkedList<T>() = default;
+  ~SLinkedList<T>() {
+    SLinkedListNode<T> deleter = head;
+    SLinkedListNode<T> tmp = deleter;
+    while (deleter != nullptr) {
+      deleter = deleter->next;
+      delete tmp;
+      tmp = deleter;
+    }
+  }
 
   bool insert(T val) {
     // TODO(drofp): Complete cycle checking by 4/28/20
     // if (cycleExists()) return false;
+    size++;
     if (head == nullptr) {
       head = new SLinkedListNode<T>(val);
       tail = head;
