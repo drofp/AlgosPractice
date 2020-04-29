@@ -1,8 +1,6 @@
 #include "linked_lists.h"
 
 namespace linkedlists {
-// dummy for testing
-int addOne(int val) { return val + 1; }
 void demoList() {
   SLinkedList<int> l;
   l.insert(3);

@@ -5,9 +5,6 @@
 #include <string>
 
 namespace linkedlists {
-// dummy test for sanity check
-TEST(SomeTestCase, AddOneTestPositive) { EXPECT_EQ(3, addOne(2)); }
-
 class SLinkedListTestInt : public ::testing::Test {
  protected:
   void SetUp() override { list_ = std::make_unique<SLinkedList<int>>(); }

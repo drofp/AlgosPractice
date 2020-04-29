@@ -23,44 +23,10 @@ class SLinkedList {
   int size {0};
 
   SLinkedList<T>() = default;
-  ~SLinkedList<T>() {
-    SLinkedListNode<T> deleter = head;
-    SLinkedListNode<T> tmp = deleter;
-    while (deleter != nullptr) {
-      deleter = deleter->next;
-      delete tmp;
-      tmp = deleter;
-    }
-  }
+  ~SLinkedList<T>();
 
-  bool insert(T val) {
-    // TODO(drofp): Complete cycle checking by 4/28/20
-    // if (cycleExists()) return false;
-    size++;
-    if (head == nullptr) {
-      head = new SLinkedListNode<T>(val);
-      tail = head;
-      return true;
-    }
-    SLinkedListNode<T> *newNode = new SLinkedListNode<T>(val);
-    tail->next = newNode;
-    tail = tail->next;
-    return true;
-  }
-  std::string toString() {
-    SLinkedListNode<T> *iterNode = head;
-    std::stringstream s;
-    std::string out;
-    while (iterNode != nullptr) {
-      s << iterNode->data;
-      out += s.str();
-      out += "->";
-      // https://stackoverflow.com/questions/20731/how-do-you-clear-a-stringstream-variable
-      std::stringstream().swap(s);
-      iterNode = iterNode->next;
-    }
-    return out;
-  }
+  bool insert(T val);
+  std::string toString();
   SLinkedListNode<T> find(T val);
   bool remove(T val, int numOfInstances);
   SLinkedListNode<T> extract(T val);
@@ -69,8 +35,50 @@ class SLinkedList {
   bool cycleExists();
 };
 
-// dummy function for testing purposes
-int addOne(int val);
+// SLinkedList<T> methods
+template<class T>
+SLinkedList<T>::~SLinkedList<T>() {
+  SLinkedListNode<T> *deleter = head;
+  SLinkedListNode<T> *tmp = deleter;
+  while (deleter != nullptr) {
+    deleter = deleter->next;
+    delete tmp;
+    tmp = deleter;
+  }
+}
+
+template<class T>
+bool SLinkedList<T>::insert(T val) {
+  // TODO(drofp): Complete cycle checking by 4/28/20
+  // if (cycleExists()) return false;
+  size++;
+  if (head == nullptr) {
+    head = new SLinkedListNode<T>(val);
+    tail = head;
+    return true;
+  }
+  SLinkedListNode<T> *newNode = new SLinkedListNode<T>(val);
+  tail->next = newNode;
+  tail = tail->next;
+  return true;
+}
+
+template<class T>
+std::string SLinkedList<T>::toString() {
+  SLinkedListNode<T> *iterNode = head;
+  std::stringstream s;
+  std::string out;
+  while (iterNode != nullptr) {
+    s << iterNode->data;
+    out += s.str();
+    out += "->";
+    // https://stackoverflow.com/questions/20731/how-do-you-clear-a-stringstream-variable
+    std::stringstream().swap(s);
+    iterNode = iterNode->next;
+  }
+  return out;
+}
+
 void demoList();
 }  // namespace linkedlists
 
