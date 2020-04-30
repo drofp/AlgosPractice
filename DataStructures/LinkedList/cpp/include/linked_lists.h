@@ -10,10 +10,34 @@ namespace linkedlists {
 template <class T>
 class SLinkedListNode {
  public:
-  SLinkedListNode(T data): data(data) {}
   T data;
   SLinkedListNode *next = nullptr;
+  SLinkedListNode(T data): data(data) {}
 };
+
+template <class T>
+bool operator==(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode);
+
+template <class T>
+bool operator!=(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode);
+
+template <class T>
+bool operator<(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode);
+
+template <class T>
+bool operator>(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode);
+
+template <class T>
+bool operator<=(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode);
+
+template <class T>
+bool operator>=(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode);
 
 template <class T>
 class SLinkedList {
@@ -27,7 +51,7 @@ class SLinkedList {
 
   bool insert(T val);
   std::string toString();
-  SLinkedListNode<T> find(T val);
+  SLinkedListNode<T>* find(T val);  // finds first instance
   bool remove(T val, int numOfInstances);
   SLinkedListNode<T> extract(T val);
   bool replicate(T val);
@@ -35,7 +59,48 @@ class SLinkedList {
   bool cycleExists();
 };
 
+/*
+// SLinkedListNode<T> methods
+*/
+template<class T>
+bool operator==(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode) {
+  return lNode.data == rNode.data;
+}
+
+template<class T>
+bool operator!=(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode) {
+  return lNode.data != rNode.data;
+}
+
+template<class T>
+bool operator<(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode) {
+  return lNode.data < rNode.data;
+}
+
+template<class T>
+bool operator>(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode) {
+  return lNode.data > rNode.data;
+}
+
+template<class T>
+bool operator<=(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode) {
+  return lNode.data <= rNode.data;
+}
+
+template<class T>
+bool operator>=(const SLinkedListNode<T> &lNode,
+                const SLinkedListNode<T> &rNode) {
+  return lNode.data >= rNode.data;
+}
+
+/*
 // SLinkedList<T> methods
+*/
 template<class T>
 SLinkedList<T>::~SLinkedList<T>() {
   SLinkedListNode<T> *deleter = head;
@@ -77,6 +142,18 @@ std::string SLinkedList<T>::toString() {
     iterNode = iterNode->next;
   }
   return out;
+}
+
+template<class T>
+SLinkedListNode<T>* SLinkedList<T>::find(T val) {
+  SLinkedListNode<T> *iterNode = head;
+  while (iterNode != nullptr) {
+    if (iterNode->data == val) {
+      return iterNode;
+    }
+    iterNode = iterNode->next;
+  }
+  return nullptr;
 }
 
 void demoList();

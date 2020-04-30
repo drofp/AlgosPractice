@@ -28,4 +28,33 @@ TEST_F(SLinkedListTestInt, ListSize) {
   EXPECT_TRUE(list_->insert(-4));
   EXPECT_EQ(3, list_->size);
 }
+
+TEST_F(SLinkedListTestInt, FindExisting) {
+  list_->insert(10);
+  list_->insert(43);
+  list_->insert(5000);
+  list_->insert(10);
+  list_->insert(-35);
+  SLinkedListNode<int> *expectedNode = list_->head;
+  EXPECT_EQ(expectedNode, list_->find(10));
+  expectedNode = list_->head->next;
+  EXPECT_EQ(expectedNode, list_->find(43));
+  expectedNode = list_->head->next->next;
+  EXPECT_EQ(expectedNode, list_->find(5000));
+  expectedNode = list_->head;
+  EXPECT_EQ(expectedNode, list_->find(10));
+  expectedNode = list_->head->next->next->next;
+  EXPECT_NE(expectedNode, list_->find(10));
+  EXPECT_EQ(*expectedNode, *list_->find(10));
+  expectedNode = list_->tail;
+  EXPECT_EQ(expectedNode, list_->find(-35));
+}
+
+TEST_F(SLinkedListTestInt, FindNotExisting) {
+  list_->insert(10);
+  list_->insert(43);
+  list_->insert(5000);
+  list_->insert(-35);
+  EXPECT_EQ(nullptr, list_->find(9001));
+}
 }  // namespace linkedlists
