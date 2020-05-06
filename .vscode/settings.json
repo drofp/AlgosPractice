@@ -79,6 +79,8 @@
         "hash_map": "cpp",
         "*.tcc": "cpp",
         "memory_resource": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "__functional_03": "cpp",
+        "filesystem": "cpp"
     }
 }
