@@ -23,7 +23,7 @@ class SLinkedListNode {
   }
   SLinkedListNode(const SLinkedListNode<T> &other);
   SLinkedListNode(SLinkedListNode<T> &&other) noexcept;
-  SLinkedListNode<T>& operator=(SLinkedListNode<T> other);
+  SLinkedListNode<T>& operator=(SLinkedListNode<T> other) noexcept;
 };
 
 template <class T>
@@ -85,7 +85,8 @@ SLinkedListNode<T>::SLinkedListNode(SLinkedListNode<T> &&other) noexcept
 }
 
 template <class T>
-SLinkedListNode<T>& SLinkedListNode<T>::operator=(SLinkedListNode<T> other) {
+SLinkedListNode<T>& SLinkedListNode<T>::operator=(SLinkedListNode<T> other)
+    noexcept {
   std::cout << "assignment operator!" << std::endl;
   swap(*this, other);
   return *this;
